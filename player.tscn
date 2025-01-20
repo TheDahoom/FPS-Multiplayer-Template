@@ -1,0 +1,215 @@
+[gd_scene load_steps=19 format=3 uid="uid://b2qhxdrnviyqf"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_8tdgl"]
+[ext_resource type="PackedScene" uid="uid://dtasdfwp6dgoh" path="res://imports/pistol.blend" id="2_0s6en"]
+[ext_resource type="Texture2D" uid="uid://ctosmto80mu2s" path="res://addons/kenney_particle_pack/star_05.png" id="3_ep0ec"]
+[ext_resource type="Texture2D" uid="uid://duu4nryr7idps" path="res://addons/kenney_particle_pack/circle_05.png" id="4_ssmal"]
+[ext_resource type="Script" path="res://crosshair.gd" id="5_fnci2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7800j"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kk8xf"]
+
+[sub_resource type="Gradient" id="Gradient_054tn"]
+offsets = PackedFloat32Array(0, 0.15942, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e76al"]
+gradient = SubResource("Gradient_054tn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h4yve"]
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_e76al")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dly5"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.952941, 1, 0.47451, 1)
+albedo_texture = ExtResource("3_ep0ec")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fbvoh"]
+material = SubResource("StandardMaterial3D_7dly5")
+size = Vector2(0.5, 0.5)
+orientation = 2
+
+[sub_resource type="Animation" id="Animation_5woug"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/pistol:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, -0.25, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/pistol:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hwk86"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/pistol:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.5, -0.25, -0.5), Vector3(0.5, -0.3, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/pistol:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.122173, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yvvk7"]
+resource_name = "move"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/pistol:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2),
+"update": 0,
+"values": [Vector3(0.5, -0.25, -0.5), Vector3(0.467158, -0.179294, -0.5), Vector3(0.5, -0.25, -0.5), Vector3(0.522576, -0.202587, -0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_d7qmc"]
+resource_name = "shoot"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/pistol:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0.5, -0.178057, -0.5), Vector3(0.5, -0.25, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/pistol:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0.408843, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m8nyu"]
+_data = {
+"RESET": SubResource("Animation_5woug"),
+"idle": SubResource("Animation_hwk86"),
+"move": SubResource("Animation_yvvk7"),
+"shoot": SubResource("Animation_d7qmc")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m36li"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Camera3D:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="player" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_8tdgl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_7800j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_kk8xf")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="pistol" parent="Camera3D" instance=ExtResource("2_0s6en")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Camera3D/pistol"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00020802, 0.0394075, -0.282182)
+emitting = false
+amount = 1
+lifetime = 0.02
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_h4yve")
+draw_pass_1 = SubResource("PlaneMesh_fbvoh")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -50)
+collision_mask = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m8nyu")
+}
+autoplay = "idle"
+playback_default_blend_time = 0.05
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_m36li")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("4_ssmal")
+stretch_mode = 5
+script = ExtResource("5_fnci2")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="child_order_changed" from="MeshInstance3D" to="." method="_on_mesh_instance_3d_child_order_changed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

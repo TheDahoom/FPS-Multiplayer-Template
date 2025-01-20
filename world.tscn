@@ -1,0 +1,105 @@
+[gd_scene load_steps=9 format=3 uid="uid://b57uspbprxc8"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_ho7yh"]
+[ext_resource type="PackedScene" uid="uid://bd3ai1v40ssao" path="res://shipment.tscn" id="3_fd0sg"]
+[ext_resource type="Script" path="res://fps_counter.gd" id="4_2328u"]
+[ext_resource type="Script" path="res://host_button.gd" id="4_nuahp"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_r06yd"]
+energy_multiplier = 1.25
+
+[sub_resource type="Sky" id="Sky_78err"]
+sky_material = SubResource("PhysicalSkyMaterial_r06yd")
+
+[sub_resource type="Environment" id="Environment_v7lsv"]
+background_mode = 2
+sky = SubResource("Sky_78err")
+tonemap_mode = 2
+tonemap_white = 6.0
+glow_blend_mode = 4
+fog_enabled = true
+fog_sun_scatter = 0.17
+fog_density = 0.0099
+fog_aerial_perspective = 1.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_wntx8"]
+
+[node name="World" type="Node"]
+script = ExtResource("1_ho7yh")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v7lsv")
+camera_attributes = SubResource("CameraAttributesPractical_wntx8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.835807, -0.47011, 0.283589, -0.375944, 0.866496, 0.328406, -0.400115, 0.167871, -0.900959, 0, 4.88489, 0)
+light_temperature = 4300.0
+light_energy = 5.0
+shadow_enabled = true
+shadow_bias = 0.0
+directional_shadow_split_1 = 0.04
+directional_shadow_split_2 = 0.11
+directional_shadow_split_3 = 0.33
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 99.3
+
+[node name="Fps counter" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("4_2328u")
+
+[node name="shipment" parent="." instance=ExtResource("3_fd0sg")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.387153
+anchor_top = 0.364198
+anchor_right = 0.612847
+anchor_bottom = 0.635802
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+script = ExtResource("4_nuahp")
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Address Here to join"
+alignment = 1
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://player.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]

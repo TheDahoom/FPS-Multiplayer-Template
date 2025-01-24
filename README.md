@@ -17,7 +17,7 @@ There is a fully featured main menu, pause menu and options panel. Did I also me
   - Fullscreen
   - Fps and ping counters
   - Mouse and controller sensitivity
-- Bullets wall collision
+- Raycast wall collision
 - Random respawn on map
 - Adjusted light and enviroment ("better graphics")
 

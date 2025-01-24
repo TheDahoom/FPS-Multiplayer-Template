@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://bd3ai1v40ssao"]
 
 [ext_resource type="PackedScene" uid="uid://7ddh125nbnc" path="res://imports/map.blend" id="1_kq4wn"]
-[ext_resource type="Texture2D" uid="uid://b2y4kxxsaf48q" path="res://addons/kenney_prototype_textures/dark/texture_09.png" id="2_ak1oh"]
-[ext_resource type="Texture2D" uid="uid://bpoy7c7ksg0yb" path="res://addons/kenney_prototype_textures/orange/texture_09.png" id="3_t2c11"]
-[ext_resource type="Texture2D" uid="uid://bdvkk3k16jm2m" path="res://addons/kenney_prototype_textures/orange/texture_07.png" id="4_vkb61"]
+[ext_resource type="Texture2D" uid="uid://b2y4kxxsaf48q" path="res://textures/kenny_prototype_textures/dark/texture_09.png" id="2_ak1oh"]
+[ext_resource type="Texture2D" uid="uid://bpoy7c7ksg0yb" path="res://textures/kenny_prototype_textures/orange/texture_09.png" id="3_t2c11"]
+[ext_resource type="Texture2D" uid="uid://bdvkk3k16jm2m" path="res://textures/kenny_prototype_textures/orange/texture_07.png" id="4_vkb61"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hul6f"]
 albedo_texture = ExtResource("2_ak1oh")

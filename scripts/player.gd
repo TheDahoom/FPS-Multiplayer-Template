@@ -6,10 +6,11 @@ extends CharacterBody3D
 @onready var raycast = $Camera3D/RayCast3D
 
 @export var health : int = 2
-@export var sensitivity : float =  .005
-@export var controller_sensitivity : float =  .010
+var sensitivity : float =  .005
+var controller_sensitivity : float =  .010
 
 var axis_vector : Vector2
+var	mouse_captured : bool = true
 
 const SPEED = 5.5
 const JUMP_VELOCITY = 4.5
@@ -22,13 +23,17 @@ func _ready() -> void:
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.current = true
+	position = spawns[randi() % 7]
 
 func _process(_delta: float) -> void:
+	sensitivity = Global.sensitivity 
+	controller_sensitivity = Global.controller_sensitivity
+	
 	rotate_y(-axis_vector.x * controller_sensitivity)
 	camera.rotate_x(-axis_vector.y * controller_sensitivity)
 	camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 
-func _unhandled_input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority(): return
 	
 	axis_vector = Input.get_vector("look_left", "look_right", "look_up", "look_down")
@@ -41,15 +46,24 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("shoot") \
 			and anim_player.current_animation != "shoot" :
 		play_shoot_effects.rpc()
-		if raycast.is_colliding():
+		if raycast.is_colliding() && str(raycast.get_collider()).contains("CharacterBody3D") :
 			var hit_player = raycast.get_collider()
 			hit_player.recieve_damage.rpc_id(hit_player.get_multiplayer_authority())
 	
 	if Input.is_action_just_pressed("respawn"):
-		recieve_damage()
+		recieve_damage(2)
+
+	if Input.is_action_just_pressed("capture"):
+		if mouse_captured:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			mouse_captured = false
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			mouse_captured = true
 
 func _physics_process(delta: float) -> void:
-	if not is_multiplayer_authority(): return
+	if multiplayer.multiplayer_peer != null:
+		if not is_multiplayer_authority(): return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -96,8 +110,8 @@ var spawns = PackedVector3Array([
 ])
 
 @rpc("any_peer")
-func recieve_damage():
-	health -= 1
+func recieve_damage(damage:= 1):
+	health -= damage
 	if health <= 0:
 		health = 2
 		position = spawns[randi() % 7]

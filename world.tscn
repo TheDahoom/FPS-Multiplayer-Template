@@ -1,9 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://b57uspbprxc8"]
+[gd_scene load_steps=22 format=3 uid="uid://b57uspbprxc8"]
 
-[ext_resource type="Script" path="res://world.gd" id="1_ho7yh"]
-[ext_resource type="PackedScene" uid="uid://bd3ai1v40ssao" path="res://shipment.tscn" id="3_fd0sg"]
-[ext_resource type="Script" path="res://fps_counter.gd" id="4_2328u"]
-[ext_resource type="Script" path="res://host_button.gd" id="4_nuahp"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_ho7yh"]
+[ext_resource type="PackedScene" uid="uid://bd3ai1v40ssao" path="res://map.tscn" id="3_fd0sg"]
+[ext_resource type="Script" path="res://scripts/ui/fps_counter.gd" id="4_2328u"]
+[ext_resource type="Script" path="res://scripts/ui/menu/host_button.gd" id="4_nuahp"]
+[ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="4_p7mxg"]
+[ext_resource type="Script" path="res://scripts/ui/menu/options/fullscreen.gd" id="5_abwkb"]
+[ext_resource type="Script" path="res://scripts/ui/menu/options/mouse_sensitivity.gd" id="6_00vww"]
+[ext_resource type="Script" path="res://scripts/ui/menu/options/back.gd" id="6_2hany"]
+[ext_resource type="Script" path="res://scripts/ui/menu/options_button.gd" id="6_7g7sm"]
+[ext_resource type="Script" path="res://scripts/ui/menu/pause/resume.gd" id="7_5cdyw"]
+[ext_resource type="Script" path="res://scripts/ui/menu/options/controller_sensitivity.gd" id="7_jhf7u"]
+[ext_resource type="Script" path="res://scripts/ui/menu/pause/quit.gd" id="9_ucmny"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_r06yd"]
 energy_multiplier = 1.25
@@ -24,6 +32,50 @@ fog_aerial_perspective = 1.0
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_wntx8"]
 
+[sub_resource type="Animation" id="Animation_ug7wi"]
+resource_name = "Dolly"
+length = 120.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DollyCamera:position:z")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.659, -0.25, 0, 0.25, 0, -14.157, -0.25, 0, 0.25, 0, 13.2434, -0.25, 0, 0.25, 0, 0.659, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 30.0667, 89.9333, 120)
+}
+
+[sub_resource type="Animation" id="Animation_ei2s0"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DollyCamera:position:z")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(13.2434, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lekn2"]
+_data = {
+"Dolly": SubResource("Animation_ug7wi"),
+"RESET": SubResource("Animation_ei2s0")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nou27"]
+shader = ExtResource("4_p7mxg")
+shader_parameter/blur_amount = 2.0
+shader_parameter/mix_amount = 0.0
+shader_parameter/color_over = null
+
+[sub_resource type="Theme" id="Theme_utqnk"]
+
 [node name="World" type="Node"]
 script = ExtResource("1_ho7yh")
 
@@ -43,63 +95,238 @@ directional_shadow_split_3 = 0.33
 directional_shadow_blend_splits = true
 directional_shadow_max_distance = 99.3
 
-[node name="Fps counter" type="Label" parent="."]
+[node name="FpsCounter" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("4_2328u")
 
-[node name="shipment" parent="." instance=ExtResource("3_fd0sg")]
+[node name="map" parent="." instance=ExtResource("3_fd0sg")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Menu" type="CanvasLayer" parent="."]
 
-[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.387153
-anchor_top = 0.364198
-anchor_right = 0.612847
-anchor_bottom = 0.635802
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 3.0
-offset_bottom = 3.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Menu"]
+root_node = NodePath("../Blur")
+libraries = {
+"": SubResource("AnimationLibrary_lekn2")
+}
+autoplay = "Dolly"
+
+[node name="Blur" type="ColorRect" parent="Menu"]
+material = SubResource("ShaderMaterial_nou27")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+[node name="DollyCamera" type="Camera3D" parent="Menu"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.702964, 13.2434)
+
+[node name="Options" type="PanelContainer" parent="Menu"]
+visible = false
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_right = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_utqnk")
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/Options"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Options/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+[node name="OptionsLabel" type="Label" parent="Menu/Options/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fullscreen" type="CheckButton" parent="Menu/Options/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fullscreen"
+script = ExtResource("5_abwkb")
+
+[node name="FpsCounter" type="CheckButton" parent="Menu/Options/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "FPS counter"
+
+[node name="Ping" type="CheckButton" parent="Menu/Options/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Shows connection trip time to host (in milliseconds)"
+text = "View Ping"
+
+[node name="SensitivityLabel" type="Label" parent="Menu/Options/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sensitivity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Options/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/Options/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Mouse sensitivity"
+
+[node name="MouseSensitivity" type="HSlider" parent="Menu/Options/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 0.001
+max_value = 0.1
+step = 0.001
+value = 0.005
+script = ExtResource("6_00vww")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Menu/Options/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/Options/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Controller sensitivity"
+
+[node name="ControllerSensitivity" type="HSlider" parent="Menu/Options/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 0.001
+max_value = 0.1
+step = 0.001
+value = 0.01
+script = ExtResource("7_jhf7u")
+
+[node name="Back" type="Button" parent="Menu/Options/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("6_2hany")
+
+[node name="PauseMenu" type="PanelContainer" parent="Menu"]
+visible = false
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_right = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/PauseMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/PauseMenu/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="PauseLabel" type="Label" parent="Menu/PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pause Menu
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resume" type="Button" parent="Menu/PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+script = ExtResource("7_5cdyw")
+
+[node name="Options" type="Button" parent="Menu/PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options
+"
+
+[node name="Quit" type="Button" parent="Menu/PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("9_ucmny")
+
+[node name="MainMenu" type="PanelContainer" parent="Menu"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 391.0
+grow_vertical = 2
+theme = SubResource("Theme_utqnk")
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/MainMenu/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="MainMenuLabel" type="Label" parent="Menu/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Main Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+[node name="HostButton" type="Button" parent="Menu/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Host"
 script = ExtResource("4_nuahp")
 
-[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Join"
 
-[node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+[node name="AddressEntry" type="LineEdit" parent="Menu/MainMenu/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "Enter Address Here to join"
 alignment = 1
+
+[node name="JoinButton" type="Button" parent="Menu/MainMenu/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "  Join  "
+
+[node name="OptionsButton" type="Button" parent="Menu/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Options"
+script = ExtResource("6_7g7sm")
+
+[node name="Quit" type="Button" parent="Menu/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("9_ucmny")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player.tscn")
 spawn_path = NodePath("..")
 
-[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="toggled" from="Menu/Options/MarginContainer/VBoxContainer/FpsCounter" to="FpsCounter" method="_on_fps_counter_toggled"]
+[connection signal="toggled" from="Menu/Options/MarginContainer/VBoxContainer/Ping" to="FpsCounter" method="_on_ping_toggled"]
+[connection signal="value_changed" from="Menu/Options/MarginContainer/VBoxContainer/HBoxContainer/MouseSensitivity" to="Menu/Options/MarginContainer/VBoxContainer/HBoxContainer/MouseSensitivity" method="_on_value_changed"]
+[connection signal="value_changed" from="Menu/Options/MarginContainer/VBoxContainer/HBoxContainer2/ControllerSensitivity" to="Menu/Options/MarginContainer/VBoxContainer/HBoxContainer2/ControllerSensitivity" method="_on_value_changed"]
+[connection signal="pressed" from="Menu/Options/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Menu/Options/MarginContainer/VBoxContainer/Back" to="Menu/PauseMenu/MarginContainer/VBoxContainer/Options" method="_on_back_pressed"]
+[connection signal="pressed" from="Menu/Options/MarginContainer/VBoxContainer/Back" to="Menu/MainMenu/MarginContainer/VBoxContainer/OptionsButton" method="_on_back_pressed"]
+[connection signal="pressed" from="Menu/PauseMenu/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Menu/PauseMenu/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Menu/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="Menu/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="toggled" from="Menu/MainMenu/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_toggled"]
+[connection signal="toggled" from="Menu/MainMenu/MarginContainer/VBoxContainer/OptionsButton" to="Menu/Options/MarginContainer/VBoxContainer/Fullscreen" method="_on_options_button_toggled"]

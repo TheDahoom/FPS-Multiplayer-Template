@@ -1,0 +1,12 @@
+[gd_resource type="VisualShader" format=3 uid="uid://ccus1gg83y3pk"]
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+"
+graph_offset = Vector2(-412.148, 29.3958)
+mode = 1
+flags/light_only = false

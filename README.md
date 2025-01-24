@@ -19,7 +19,7 @@ There is a fully featured main menu, pause menu and options panel. Did I also me
   - Mouse and controller sensitivity
 - Bullet wall collision
 - Random respawn on map
-- Adjusted light and enviroment ("better graphics")
+- Adjusted light and environment ("better graphics")
 
 ## Assets
 - The 3d assets are made by me and go by the same MIT license, so you are free to use them in your commercial games

@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2y4kxxsaf48q"
-path.s3tc="res://.godot/imported/texture_09.png-4aa9db868c70b2ab32da6197ead845e0.s3tc.ctex"
-path.etc2="res://.godot/imported/texture_09.png-4aa9db868c70b2ab32da6197ead845e0.etc2.ctex"
+uid="uid://bpoy7c7ksg0yb"
+path.s3tc="res://.godot/imported/texture_09.png-bc6819cca457bab97bae5215737455e2.s3tc.ctex"
+path.etc2="res://.godot/imported/texture_09.png-bc6819cca457bab97bae5215737455e2.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/kenny_prototype_textures/dark/texture_09.png"
-dest_files=["res://.godot/imported/texture_09.png-4aa9db868c70b2ab32da6197ead845e0.s3tc.ctex", "res://.godot/imported/texture_09.png-4aa9db868c70b2ab32da6197ead845e0.etc2.ctex"]
+source_file="res://textures/kenney_prototype_textures/orange/texture_09.png"
+dest_files=["res://.godot/imported/texture_09.png-bc6819cca457bab97bae5215737455e2.s3tc.ctex", "res://.godot/imported/texture_09.png-bc6819cca457bab97bae5215737455e2.etc2.ctex"]
 
 [params]
 

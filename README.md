@@ -35,4 +35,4 @@ There is a fully featured main menu, pause menu and options panel. Did I also me
 - Gun Shot Sound: https://freesound.org/people/DarkShroom/sounds/645317/
 
 ## Contributors
-- https://github.com/bearlikelion
+- [pbearlikelion](https://github.com/bearlikelion) Great changes including audio and code refactoring

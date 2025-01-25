@@ -46,7 +46,7 @@ func _on_options_pressed() -> void:
 	
 func _on_back_pressed() -> void:
 	if options:
-		$Menu/PauseMenu.show()
+		$Menu/Blur.hide()
 		options = false
 
 #func _ready() -> void:

@@ -24,6 +24,19 @@ There is a fully featured main menu, pause menu and options panel. Did I also me
 - Random respawn on map
 - Adjusted light and environment ("better graphics")
 
+## Controls
+  - C to toggle mouse capture
+  - F or (sony square)/(x on xbox) to respawn
+  - Left click / Right trigger to shoot
+  - Esc / start for pause menu
+  - 
+
+## Multiplayer
+When pressing host view the console to get an IP for your session and give that to your friends (be careful because its your public IP)
+
+#### troubleshooting
+If you get a upnp error in the console then you have to port forward port 9999 then share your public IP you can get it through [here](https://api.ipify.org/)
+ 
 ## Assets
 - The 3d assets are made by me and go by the same MIT license, so you are free to use them in your commercial games
 - The textures are made by [kenny](https://kenney.itch.io/) and go by the CC0 license so if you like them please go [donate to them](https://kenney.itch.io/kenney-donation)

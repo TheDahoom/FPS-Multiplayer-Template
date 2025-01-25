@@ -35,7 +35,7 @@ There is a fully featured main menu, pause menu and options panel. Did I also me
 When pressing host view the console to get an IP for your session and give that to your friends (be careful because its your public IP)
 
 #### troubleshooting
-If you get a upnp error in the console then you have to port forward port 9999 then share your public IP you can get it through [here](https://api.ipify.org/)
+If you get a upnp error in the console then make sure that you have UPNP enabled on your router. If the error persists you have to port forward port 9999 then share your public IP which you can get [here](https://api.ipify.org/)
  
 ## Assets
 - The 3d assets are made by me and go by the same MIT license, so you are free to use them in your commercial games
@@ -48,4 +48,4 @@ If you get a upnp error in the console then you have to port forward port 9999 t
 - Gun Shot Sound: https://freesound.org/people/DarkShroom/sounds/645317/
 
 ## Contributors
-- [pbearlikelion](https://github.com/bearlikelion) Great changes including audio and code refactoring
+- [bearlikelion](https://github.com/bearlikelion) Great changes including audio and code refactoring

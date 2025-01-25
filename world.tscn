@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://b57uspbprxc8"]
+[gd_scene load_steps=23 format=3 uid="uid://b57uspbprxc8"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_ho7yh"]
 [ext_resource type="PackedScene" uid="uid://bd3ai1v40ssao" path="res://map.tscn" id="3_fd0sg"]
 [ext_resource type="Script" path="res://scripts/ui/fps_counter.gd" id="4_2328u"]
 [ext_resource type="Script" path="res://scripts/ui/menu/host_button.gd" id="4_nuahp"]
 [ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="4_p7mxg"]
+[ext_resource type="AudioStream" uid="uid://p6uvqtljqic7" path="res://audio/661248__magmadiverrr__video-game-menu-music.ogg" id="4_taatn"]
 [ext_resource type="Script" path="res://scripts/ui/menu/options/fullscreen.gd" id="5_abwkb"]
 [ext_resource type="Script" path="res://scripts/ui/menu/options/mouse_sensitivity.gd" id="6_00vww"]
 [ext_resource type="Script" path="res://scripts/ui/menu/options/back.gd" id="6_2hany"]
@@ -104,6 +105,12 @@ script = ExtResource("4_2328u")
 
 [node name="Menu" type="CanvasLayer" parent="."]
 
+[node name="MenuMusic" type="AudioStreamPlayer" parent="Menu"]
+unique_name_in_owner = true
+stream = ExtResource("4_taatn")
+autoplay = true
+bus = &"Music"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Menu"]
 root_node = NodePath("../Blur")
 libraries = {
@@ -123,6 +130,7 @@ grow_vertical = 2
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.702964, 13.2434)
 
 [node name="Options" type="PanelContainer" parent="Menu"]
+unique_name_in_owner = true
 visible = false
 anchors_preset = 13
 anchor_left = 0.5
@@ -154,6 +162,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Fullscreen" type="CheckButton" parent="Menu/Options/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Fullscreen"
 script = ExtResource("5_abwkb")
@@ -293,6 +302,7 @@ script = ExtResource("4_nuahp")
 layout_mode = 2
 
 [node name="AddressEntry" type="LineEdit" parent="Menu/MainMenu/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Enter Address Here to join"

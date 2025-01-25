@@ -33,3 +33,6 @@ There is a fully featured main menu, pause menu and options panel. Did I also me
 - The base multiplayer functionality was made by following a [tutorial](https://www.youtube.com/watch?v=n8D3vEx7NAE) from [DevLogLogan](https://www.youtube.com/@DevLogLogan)
 - Menu Music: https://freesound.org/people/magmadiverrr/sounds/661248/
 - Gun Shot Sound: https://freesound.org/people/DarkShroom/sounds/645317/
+
+## Contributors
+- [pbearlikelion](https://github.com/bearlikelion) Great changes including audio and code refactoring

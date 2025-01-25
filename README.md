@@ -7,6 +7,9 @@ An FPS multiplayer template with everything you'd need to get started. Includes 
 There is a fully featured main menu, pause menu and options panel. Did I also mention it has full controller support?
 </p>
 
+## Installation
+  Open the godot project manager, switch to the asset library and search ``FPS multiplayer template`` and download. Another method is to clone the repo into your godot projects folder and open it from there.
+
 ## Features
 - Multiplayer
 - Full map with custom assets

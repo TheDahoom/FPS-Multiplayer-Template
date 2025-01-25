@@ -72,6 +72,8 @@ func _on_host_button_pressed() -> void:
 func _on_join_button_pressed() -> void:
 	main_menu.hide()
 	$Menu/Blur.hide()
+	menu_music.stop()
+	
 	enet_peer.create_client(address_entry.text, PORT)
 	if options_menu.visible:
 		options_menu.hide()

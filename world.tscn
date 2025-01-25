@@ -108,6 +108,7 @@ script = ExtResource("4_2328u")
 [node name="MenuMusic" type="AudioStreamPlayer" parent="Menu"]
 unique_name_in_owner = true
 stream = ExtResource("4_taatn")
+volume_db = -20.0
 autoplay = true
 bus = &"Music"
 

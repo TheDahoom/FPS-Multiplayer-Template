@@ -29,7 +29,6 @@ There is a fully featured main menu, pause menu and options panel. Did I also me
   - F or (sony square)/(x on xbox) to respawn
   - Left click / Right trigger to shoot
   - Esc / start for pause menu
-  - 
 
 ## Multiplayer
 When pressing host view the console to get an IP for your session and give that to your friends (be careful because its your public IP)

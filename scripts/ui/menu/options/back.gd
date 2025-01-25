@@ -1,6 +1,6 @@
 extends Button
 
-@onready var options_menu = $"../../.."
+@onready var options_menu: PanelContainer = %Options
 
 
 func _pressed() -> void:

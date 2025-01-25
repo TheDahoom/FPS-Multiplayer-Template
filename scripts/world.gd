@@ -84,6 +84,12 @@ func _on_options_button_toggled(toggled_on: bool) -> void:
 		options_menu.show()
 	else:
 		options_menu.hide()
+		
+func _on_music_toggle_toggled(toggled_on: bool) -> void:
+	if !toggled_on:
+		menu_music.stop()
+	else:
+		menu_music.play()
 
 func add_player(peer_id: int) -> void:
 	var player: Node = Player.instantiate()

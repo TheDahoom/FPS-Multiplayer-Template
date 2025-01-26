@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/38561c4c-d22c-4d7d-9dc2-8fd8de6a8f66" alt="sk-seo logo" />
+  <img src="https://github.com/user-attachments/assets/38561c4c-d22c-4d7d-9dc2-8fd8de6a8f66" alt="FPS multiplayer template screenshot" />
 </p>
 
 <p align="center">
@@ -23,6 +23,13 @@ There is a fully featured main menu, pause menu and options panel. Did I also me
 - Bullet wall collision
 - Random respawn on map
 - Adjusted light and environment ("better graphics")
+### New
+ - Music (with toggle) and bullet sounds (thanks to [bearlikelion](https://github.com/bearlikelion))
+ - Configurable random respawns Player > Inspector > Spawns
+ - QOL:
+    - added tooltips for exported variables
+    - code refactor (thanks to [bearlikelion](https://github.com/bearlikelion) and me)
+    - bug fixes
 
 ## Controls
   - C to toggle mouse capture

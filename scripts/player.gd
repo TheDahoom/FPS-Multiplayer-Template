@@ -6,7 +6,18 @@ extends CharacterBody3D
 @onready var raycast: RayCast3D = $Camera3D/RayCast3D
 @onready var gunshot_sound: AudioStreamPlayer3D = %GunshotSound
 
+## Number of shots before a player dies
 @export var health : int = 2
+## The xyz position of the random spawns, you can add as many as you want!
+@export var spawns: PackedVector3Array = ([
+	Vector3(-18, 0.2, 0),
+	Vector3(18, 0.2, 0),
+	Vector3(-2.8, 0.2, -6),
+	Vector3(-17,0,17),
+	Vector3(17,0,17),
+	Vector3(17,0,-17),
+	Vector3(-17,0,-17)
+])
 var sensitivity : float =  .005
 var controller_sensitivity : float =  .010
 
@@ -24,7 +35,7 @@ func _ready() -> void:
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.current = true
-	position = spawns[randi() % 7]
+	position = spawns[randi() % spawns.size()]
 
 func _process(_delta: float) -> void:
 	sensitivity = Global.sensitivity
@@ -101,22 +112,13 @@ func play_shoot_effects() -> void:
 	muzzle_flash.restart()
 	muzzle_flash.emitting = true
 
-var spawns: PackedVector3Array = PackedVector3Array([
-	Vector3(-18, 0.2, 0),
-	Vector3(18, 0.2, 0),
-	Vector3(-2.8, 0.2, -6),
-	Vector3(-17,0,17),
-	Vector3(17,0,17),
-	Vector3(17,0,-17),
-	Vector3(-17,0,-17)
-])
-
 @rpc("any_peer")
 func recieve_damage(damage:= 1) -> void:
 	health -= damage
 	if health <= 0:
 		health = 2
-		position = spawns[randi() % 7]
+		print(spawns.size())
+		position = spawns[randi() % spawns.size()]
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "shoot":

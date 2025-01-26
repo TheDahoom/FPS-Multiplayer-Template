@@ -35,7 +35,7 @@ func _on_resume_pressed() -> void:
 	if !controller:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	paused = false
-
+	
 func _on_options_pressed() -> void:
 	_on_resume_pressed()
 	$Menu/Options.show()

@@ -48,6 +48,8 @@ func _on_options_pressed() -> void:
 func _on_back_pressed() -> void:
 	if options:
 		$Menu/Blur.hide()
+		if !controller:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		options = false
 
 #func _ready() -> void:

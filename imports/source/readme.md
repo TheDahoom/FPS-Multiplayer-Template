@@ -1,0 +1,1 @@
+Blend files use blender 4.3, opening them in any older version causes crashes. At least it does for me :(

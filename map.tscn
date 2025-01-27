@@ -1,205 +1,193 @@
-[gd_scene load_steps=10 format=3 uid="uid://bd3ai1v40ssao"]
+[gd_scene load_steps=8 format=3 uid="uid://bd3ai1v40ssao"]
 
-[ext_resource type="PackedScene" uid="uid://7ddh125nbnc" path="res://imports/map.blend" id="1_kq4wn"]
+[ext_resource type="PackedScene" uid="uid://cec260edc6rgi" path="res://imports/map.glb" id="1_ivhtw"]
 [ext_resource type="Texture2D" uid="uid://b2y4kxxsaf48q" path="res://textures/kenney_prototype_textures/dark/texture_09.png" id="2_ak1oh"]
 [ext_resource type="Texture2D" uid="uid://bpoy7c7ksg0yb" path="res://textures/kenney_prototype_textures/orange/texture_09.png" id="3_t2c11"]
 [ext_resource type="Texture2D" uid="uid://bdvkk3k16jm2m" path="res://textures/kenney_prototype_textures/orange/texture_07.png" id="4_vkb61"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hul6f"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7vndy"]
 albedo_texture = ExtResource("2_ak1oh")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kb5m6"]
-albedo_texture = ExtResource("2_ak1oh")
-uv1_triplanar = true
-uv1_world_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3djkk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5skux"]
 albedo_texture = ExtResource("3_t2c11")
 uv1_triplanar = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcd7p"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_87bwd"]
 albedo_texture = ExtResource("4_vkb61")
 uv1_offset = Vector3(0, 0, 1)
 uv1_triplanar = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uceiw"]
-albedo_texture = ExtResource("4_vkb61")
-uv1_offset = Vector3(0, 0, 1)
-uv1_triplanar = true
-
-[node name="map" instance=ExtResource("1_kq4wn")]
-transform = Transform3D(1, 5.2878e-06, -6.71306e-07, -5.2878e-06, 1, -1.66194e-05, 6.71306e-07, 1.66194e-05, 1, 0, 0, 0)
+[node name="map" instance=ExtResource("1_ivhtw")]
 
 [node name="Plane" parent="." index="0"]
-transform = Transform3D(40.1078, -1.82487e-11, 0, -3.63803e-12, 40.1078, 5.82077e-11, 0, 0, 40.1078, 0, 0, 0)
-surface_material_override/0 = SubResource("StandardMaterial3D_hul6f")
+surface_material_override/0 = SubResource("StandardMaterial3D_7vndy")
 
 [node name="Walls " parent="." index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_kb5m6")
+surface_material_override/0 = SubResource("StandardMaterial3D_7vndy")
 
 [node name="Cargo" parent="." index="2"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo_001" parent="." index="3"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo_002" parent="." index="4"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo_003" parent="." index="5"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo_004" parent="." index="6"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo_005" parent="." index="7"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo_006" parent="." index="8"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo_007" parent="." index="9"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo_008" parent="." index="10"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo_009" parent="." index="11"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo_010" parent="." index="12"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo_011" parent="." index="13"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo_012" parent="." index="14"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo_013" parent="." index="15"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo_014" parent="." index="16"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo both open" parent="." index="17"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="Cargo both open_001" parent="." index="18"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="cargo side open" parent="." index="19"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="cargo side open_001" parent="." index="20"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="cargo side open_002" parent="." index="21"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3djkk")
+surface_material_override/0 = SubResource("StandardMaterial3D_5skux")
 
 [node name="barrel" parent="." index="22"]
-surface_material_override/0 = SubResource("StandardMaterial3D_jcd7p")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_001" parent="." index="23"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_002" parent="." index="24"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_003" parent="." index="25"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_004" parent="." index="26"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_005" parent="." index="27"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_006" parent="." index="28"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_007" parent="." index="29"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_008" parent="." index="30"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_009" parent="." index="31"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_010" parent="." index="32"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_011" parent="." index="33"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_012" parent="." index="34"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_013" parent="." index="35"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_014" parent="." index="36"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_015" parent="." index="37"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_016" parent="." index="38"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_017" parent="." index="39"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_018" parent="." index="40"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_019" parent="." index="41"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_020" parent="." index="42"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_021" parent="." index="43"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_022" parent="." index="44"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_023" parent="." index="45"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_024" parent="." index="46"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_025" parent="." index="47"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_026" parent="." index="48"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_027" parent="." index="49"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_028" parent="." index="50"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_029" parent="." index="51"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_030" parent="." index="52"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_031" parent="." index="53"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_032" parent="." index="54"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_033" parent="." index="55"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")
 
 [node name="barrel_034" parent="." index="56"]
-surface_material_override/0 = SubResource("StandardMaterial3D_uceiw")
+surface_material_override/0 = SubResource("StandardMaterial3D_87bwd")

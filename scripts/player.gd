@@ -117,7 +117,6 @@ func recieve_damage(damage:= 1) -> void:
 	health -= damage
 	if health <= 0:
 		health = 2
-		print(spawns.size())
 		position = spawns[randi() % spawns.size()]
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

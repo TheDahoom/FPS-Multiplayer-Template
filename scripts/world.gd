@@ -104,6 +104,7 @@ func remove_player(peer_id: int) -> void:
 		player.queue_free()
 
 func upnp_setup() -> void:
+	if multiplayer.is_server(): return
 	var upnp: UPNP = UPNP.new()
 
 	upnp.discover()
